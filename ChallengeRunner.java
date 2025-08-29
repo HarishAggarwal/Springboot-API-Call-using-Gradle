@@ -36,9 +36,9 @@ public class ChallengeRunner implements CommandLineRunner {
 
         // 1. Create the request body [cite: 11]
         RegistrationRequest requestBody = new RegistrationRequest();
-        requestBody.setName("John Doe"); // Use your name [cite: 12]
-        requestBody.setRegNo("REG12347"); // Use your registration number [cite: 13]
-        requestBody.setEmail("john@example.com"); // Use your email [cite: 14]
+        requestBody.setName("Harish Aggarwal");
+        requestBody.setRegNo("22BCT0107");
+        requestBody.setEmail("harish.aggarwal2022@vitstudent.ac.in");
 
         System.out.println("Sending registration request to " + registrationUrl);
         try {
@@ -82,6 +82,7 @@ public class ChallengeRunner implements CommandLineRunner {
     }
 
     // Helper method to get the SQL query
+    // Helper method to get the SQL query
     private String getSqlQuery(String regNo) {
         // 1. Extract the numeric part of the registration number
         String numericPart = regNo.replaceAll("[^0-9]", "");
@@ -94,12 +95,14 @@ public class ChallengeRunner implements CommandLineRunner {
         
         // 3. Check if the number is odd or even
         if (lastTwoDigits % 2 != 0) {
-            // ODD: Solve Question 1 [cite: 20]
+            [cite_start]// ODD: Solve Question 1 [cite: 20]
             System.out.println("RegNo ends in an odd number (" + lastTwoDigits + "). Solving Question 1.");
-            // IMPORTANT: Replace this placeholder with your actual SQL query from the Google Drive link
-            finalQuery = "SELECT patient_name FROM patients WHERE age > 50;";
+            
+            // ---- THIS IS THE CORRECT, FINAL QUERY FOR QUESTION 1 ----
+            finalQuery = "SELECT p.AMOUNT AS SALARY, CONCAT(e.FIRST_NAME, ' ', e.LAST_NAME) AS NAME, TIMESTAMPDIFF(YEAR, e.DOB, p.PAYMENT_TIME) AS AGE, d.DEPARTMENT_NAME FROM PAYMENTS p JOIN EMPLOYEE e ON p.EMP_ID = e.EMP_ID JOIN DEPARTMENT d ON e.DEPARTMENT = d.DEPARTMENT_ID WHERE DAY(p.PAYMENT_TIME) != 1 ORDER BY p.AMOUNT DESC LIMIT 1;";
+            
         } else {
-            // EVEN: Solve Question 2 [cite: 22]
+            [cite_start]// EVEN: Solve Question 2 [cite: 22]
             System.out.println("RegNo ends in an even number (" + lastTwoDigits + "). Solving Question 2.");
             // IMPORTANT: Replace this placeholder with your actual SQL query from the Google Drive link
             finalQuery = "SELECT doctor_name FROM doctors WHERE specialization = 'Cardiology';";
